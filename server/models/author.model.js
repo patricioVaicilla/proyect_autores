@@ -1,19 +1,11 @@
 const mongoose = require('mongoose');
 
-const UserScheme = new mongoose.Schema({
-    userName: {
+const AuthorScheme = new mongoose.Schema({
+    Name: {
         type: String,
-        require: [true, 'Username is mandatory']
+        require: [true, 'name is mandatory']
     },
-    email: {
-        type: String,
-        required: [true, "Email is required"],
-        validate: {
-            validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val), message: "Invalid email"
-        }
-    }
-
 });
 
-const User=mongoose.model('User',UserScheme);
-module.exports=User;
+const Author=mongoose.model('Author',AuthorScheme);
+module.exports=Author;

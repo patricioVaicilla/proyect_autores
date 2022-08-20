@@ -3,31 +3,31 @@
 const Author = require('../models/author.model');
 
 module.exports.createAuthor = (request, response) => {
-    const { userName, email } = request.body;
+    const { name } = request.body;
     Author.create({
-        userName, email
+        name
     })
-        .then(user => response.json({ insertedUser: user, msg: 'Succesful creation' }))
+        .then(author => response.json({ insertedAuthor: author, msg: 'Succesful creation' }))
         .catch(err => response.status(400).json(err));
 }
 
-module.exports.getAllUsers = (_, response) => {
-    User.find({})
-        .then(retriviedusers => response.json(retriviedusers))
+module.exports.getAllAuthors = (_, response) => {
+    Author.find({})
+        .then(retriviedauthors => response.json(retriviedauthors))
         .catch(err => response.json(err))
 }
-module.exports.getUser = (request, response) => {
-    User.findOne({ _id: request.params.id })
-        .then(user => response.json(user))
+module.exports.getAuthor = (request, response) => {
+    Author.findOne({ _id: request.params.id })
+        .then(author => response.json(author))
         .catch(err => response.json(err))
 }
-module.exports.updateUser = (request, response) => {
-    User.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true })
-        .then(updatedUser => response.json(updatedUser))
+module.exports.updateAuthor = (request, response) => {
+    Author.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true })
+        .then(updatedAuthor => response.json(updatedAuthor))
         .catch(err => response.json(err))
 }
-module.exports.deleteUser = (request, response) => {
-    User.deleteOne({ _id: request.params.id })
-        .then(userDeleted => response.json(userDeleted))
+module.exports.deleteAuthor = (request, response) => {
+    Author.deleteOne({ _id: request.params.id })
+        .then(authorDeleted => response.json(authorDeleted))
         .catch(err => response.json(err))
 }
